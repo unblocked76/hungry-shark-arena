@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Hungry Shark Arena</title>
+  <meta name="description" content="Hungry Shark Arena is the online multiplayer shark battle royale game that takes you on a vicious underwater war for supremacy." />
+
+  <!--http://www.html5rocks.com/en/mobile/mobifying/-->
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1" />
+
+  <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:url" content="https://nano.ubisoft.com/?gameID=HSA" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hungry Shark Arena" />
+  <meta property="og:description" content="Hungry Shark Arena is the online multiplayer shark battle royale game that takes you on a vicious underwater war for supremacy." />
+  <meta property="og:image" content="https://nano.ubisoft.com/Nano/images/HSA/HUNGRY-SHARK-NANO-BANNER-JOIN-NOW.png" />
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="364">
+  <!-- force webkit on 360 -->
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <!-- force edge on IE -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- force full screen on some browser -->
+  <meta name="full-screen" content="yes" />
+  <meta name="x5-fullscreen" content="true" />
+  <meta name="360-fullscreen" content="true" />
+
+  <!-- force screen orientation on some browser -->
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="x5-orientation" content="portrait">
+
+  <!--fix fireball/issues/3568 -->
+  <!--<meta name="browsermode" content="application">-->
+  <meta name="x5-page-mode" content="app">
+
+  <!--<link rel="apple-touch-icon" href=".png" />-->
+  <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
+
+  <link rel="stylesheet" type="text/css" href="style-mobile.9f62d.css" />
+  <link rel="icon" href="favicon.e88f8.png" />
+  <!--#IMPORT [html_header] -->
+
+
+</head>
+
+<body style="background-color:black;">
+  <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+  <div id="splash">
+  <img id="game-logo" style="height: 65%;" src="./Logo_HS.5acf0.png"></img>
+	<img id="ubi_cocos-logo" style="height: 15%;" src="./logo_Ubisoft_Cocos.15143.png"></img>
+  <div id="loading-anim" class="sk-circle" style="top: -20px;">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
+
+  <script src="src/settings.f4de6.js" charset="utf-8"></script>
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!--#IMPORT [html_body] -->
+
+  <!--#IMPORT [firebase_script] -->
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+  <!--#IMPORT [gdpr_script] -->
+
+  <script src="main.06473.js" charset="utf-8"></script>
+
+  <script type="text/javascript">
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+  </script>
+  <script type="text/javascript">
+    window.onload = function() {
+      console.log('window.buildVersion', window.buildVersion);
+    };
+    window.trackingFunnelEvents = [];
+
+    (function() {
+      // <!--#IMPORT [firebase_credentials] -->
+var firebaseCredentials = {
+    "apiKey": "AIzaSyDJEGeNfP54DQjzz6-9YCYo0RXDaWs68jo",
+    "authDomain": "hungry-shark-6bb74.firebaseapp.com",
+    "databaseURL": "https://hungry-shark-6bb74.firebaseio.com",
+    "projectId": "hungry-shark-6bb74",
+    "storageBucket": "hungry-shark-6bb74.appspot.com",
+    "messagingSenderId": "69867252644",
+    "appId": "1:69867252644:web:b6da28ebfbcb3af5b06f31",
+    "measurementId": "G-YWH8HCBRMY"
+};
+
+      // <!--#IMPORT [script_init] -->
+
+
+      var origin = null;
+
+      if (window.loginData && window.loginData.origin) {
+        origin = window.loginData.origin;
+      } else {
+        origin = getUrlParameter("origin");
+      }
+
+      if (!origin) {
+        if (window.location.href.includes('nano.ubisoft.com')) {
+          origin = "Nano";
+        } else if (window.location.href.includes('gamedistribution.com')) {
+          origin = "GameDistribution";
+        } else {
+          origin = "unknown";
+        }
+      }
+
+      const saveCheckerKey = 'NGC_LoadFunnelTime';
+
+      var checkerTime = localStorage.getItem(saveCheckerKey) || 0;
+      checkerTime++;
+      checkerTime = Math.min(checkerTime, 3)
+      localStorage.setItem(saveCheckerKey, checkerTime);
+      window.funnel = {
+        checker: checkerTime === 1 ? 'First' : 'Repeat',
+        startTime: Date.now()
+      }
+
+      window.versionInfo = {
+        gameVersion: "20220706.90.59.GameDistribution",
+        deploymentEnvironment: "Live"
+      }
+
+      if (window.firebase) {
+        var firebaseInfo = {};
+        // NGC_LoadFunnelTime key for NGC, game team should modify to replace NGC with your gamecode
+
+
+        firebaseInfo.firebaseApp = firebase.initializeApp(firebaseCredentials);
+        if (!firebaseInfo.firebaseApp) {
+          console.error("Failed to initialize Firebase");
+        }
+
+
+
+        var adBlockEnabled = false;
+        var testAd = document.createElement('div');
+        testAd.innerHTML = '&nbsp;';
+        testAd.className = 'adsbox';
+        document.body.appendChild(testAd);
+        window.setTimeout(function() {
+          if (testAd.offsetHeight === 0) {
+            adBlockEnabled = true;
+            window.isAdsBlocked = adBlockEnabled;
+          }
+          testAd.remove();
+          console.log('AdBlock Enabled? ', adBlockEnabled)
+        }, 100);
+
+        window.isAdsBlocked = adBlockEnabled;
+
+        firebaseInfo.firebaseAnalytics = firebase.analytics();
+        if (!firebaseInfo.firebaseAnalytics) {
+          console.error("Failed to initialize firebase analytics");
+        } else {
+          let event = {};
+          event.name = 'loading_gameStart';
+          event.param = {
+            "acquisitionChannel": origin,
+            "gameVersion": window.versionInfo.gameVersion,
+            "deploymentEnvironment": window.versionInfo.deploymentEnvironment,
+            "checker": window.funnel.checker,
+            "clientTimestamp": Date.now()
+          }
+          trackingFunnelEvents.push(event);
+
+        }
+
+        // firebaseInfo.firebasePerformance = firebase.performance();
+        // if (!firebaseInfo.firebasePerformance) {
+        //   console.error("Failed to init firebase Performance");
+        // }
+
+        // firebaseInfo.firebaseRemoteConfig = firebase.remoteConfig(this.firebaseApp);
+        // if (!firebaseInfo.firebaseRemoteConfig) {
+        //   console.error("Failed to initialize firebase remoteconfig");
+        //   return false;
+        // } else {
+        //   firebaseInfo.firebaseRemoteConfig.settings = {
+        //     minimumFetchIntervalMillis: 3600000,
+        //     fetchTimeoutMillis: 60000
+        //   }
+        // }
+
+        window.firebaseInfo = firebaseInfo;
+        window.trackingFunnelEvents = trackingFunnelEvents;
+
+      }
+
+      var debug = window._CCSettings.debug;
+      var splash = document.getElementById('splash');
+
+      function loadScript(moduleName, cb) {
+        function scriptLoaded() {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+        };
+        var domScript = document.createElement('script');
+        domScript.async = true;
+        domScript.src = moduleName;
+        domScript.addEventListener('load', scriptLoaded, false);
+
+        document.body.appendChild(domScript);
+      }
+
+      loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.5a957.js', function() {
+        if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+          loadScript(debug ? 'physics.js' : 'physics-min.js', winboot);
+        } else {
+          let event = {};
+          event.name = 'loading_cocosLoaded';
+          event.param = {
+            "checker": window.funnel.checker,
+            "totalSec": Date.now() - window.funnel.startTime,
+            "clientTimestamp": Date.now(),
+            "gameVersion": window.versionInfo.gameVersion,
+            "deploymentEnvironment": window.versionInfo.deploymentEnvironment
+          }
+          if (window.trackingFunnelEvents)
+            window.trackingFunnelEvents.push(event);
+          window.boot();
+        }
+      });
+
+      // <!--#IMPORT [script_add_function] -->
+
+
+    })();
+  </script>
+  //
+  <!--#IMPORT [gdpr_banner] -->
+
+</body>
+
+</html>
